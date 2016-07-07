@@ -2,7 +2,7 @@
 
 O objetivo deste desafio é obter uma ideia das habilidades que o candidato possui, da organização de tempo e também do código.
 
-Imagine que você é um freelancer que deseja construir um sistema para gerenciar seu portfolio de trabalhos e exibir para os seus possíveis clientes, sendo um desenvolvedor, você decide criar uma solução customizada.
+_Imagine que você é um freelancer que deseja construir um sistema para gerenciar seu portfolio de trabalhos e exibir para os seus possíveis clientes, sendo um desenvolvedor, você decide criar uma solução customizada._
 
 Sua tarefa é construir a melhor solução no tempo combinado, considerando os requisitos que estarão descritos abaixo.
 
