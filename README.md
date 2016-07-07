@@ -19,11 +19,12 @@ Sua tarefa é construir a melhor solução no tempo combinado, considerando os r
 
 ## Itens Obrigatórios
 
-Algumas itens são obrigatórios pois fazem parte da avaliação. São elas:
+Algums itens são obrigatórios pois fazem parte da avaliação. São eles:
 
 - Utilize Java `>= 7`;
 - O pacote final da sua solução deve ser um arquivo WAR, será executado em um Tomcat;
 - Se sua aplicação necessitar de configurações (ex: banco de dados), inclua as indicações em um arquivo `setup.md` na raíz do projeto;
+- **Também inclua no `setup.md` como podemos executar a sua aplicação;**
 
 ## Funcionalidades
 
