@@ -2,7 +2,7 @@
 
 O objetivo deste desafio é obter uma ideia das habilidades que o candidato possui, da organização de tempo e também do código.
 
-_Imagine que você é um freelancer que deseja construir um sistema para gerenciar seu portfolio de trabalhos e exibir para os seus possíveis clientes, sendo um desenvolvedor, você decide criar uma solução customizada._
+_Imagine que você é um freelancer que deseja construir uma aplicação WEB para gerenciar seu portfolio de trabalhos e exibir para os seus possíveis clientes, sendo um desenvolvedor, você decide criar uma solução customizada._
 
 Sua tarefa é construir a melhor solução no tempo combinado, considerando os requisitos que estarão descritos abaixo.
 
@@ -11,7 +11,7 @@ Sua tarefa é construir a melhor solução no tempo combinado, considerando os r
 ## Considerações Importantes
 
 - Use seu tempo de forma inteligente. Uma solução simples primeiro e depois avance.
-- Você pode utilizar bibliotecas e frameworks, não reinvente a roda.
+- **Você pode utilizar bibliotecas e frameworks, não reinvente a roda.**
 - Comentários sempre são bem-vindos em métodos ou estruturas mais complexas.
 - **Faça testes unitários**, não existe necessidade de 100% de cobertura, mas construa testes que validem sua solução.
 - Faça commits **frequentes se possível**, assim podemos ver a evolução da sua solução.
@@ -44,9 +44,7 @@ Você que ficar seguro e não quer correr o risco de perder o cadastro de todo s
 
 ### 3) API
 
-Uma aplicação mobile apresentando seu portfolio funcionaria muito bem para mostrar suas habilidades.
-
-Para não ter suas informações em dois locais você decide incluir no sistema do seu portfolio uma API para obter os dados cadastrados. Sua API precisará de dois endpoints:
+Uma aplicação mobile apresentando seu portfolio funcionaria muito bem para mostrar suas habilidades, então para não ter suas informações em dois locais você decide **incluir no sistema do seu portfolio uma API** para obter os dados cadastrados. Sua API precisará de dois endpoints:
 
 - Um para listar todos os trabalhos;
 - Outro para obter informação sobre um trabalho específico (pelo ID por exemplo);
