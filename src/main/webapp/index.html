@@ -1,10 +1,93 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html lang="pt-br" ng-app="crudApp"> 
     <head>
-        <title>Start Page</title>
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <meta charset="utf-8"/>
+        <title>AngularJS CRUD Operations with PHP and MySQL by CodexWorld</title>
+        <link href="lib/css/bootstrap.min.css" rel="stylesheet">
+        <link href="lib/css/style.css" rel="stylesheet">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+        <script src="lib/js/bootstrap.min.js"></script>
+        <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
+        <script src = "lib/js/main.js"></script>
     </head>
-    <body>
-        <h1>Hello World!</h1>
+    <body ng-controller="projetoController" ng-init="getProjetos()">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <h2>Teste técnico - Portifólio</h2>
+                <div class="panel panel-default users-content">
+                    <div class="panel-heading">Meus projetos <a href="javascript:void(0);" class="glyphicon glyphicon-plus" onClick="$('.formData').slideToggle();"></a></div>
+                    <div class="alert alert-danger none"><p></p></div>
+                    <div class="alert alert-success none"><p></p></div>
+                    <div class="panel-body none formData col-md-12">
+                        <form class="form" name="projetoForm">
+                            <div class="form-group">
+                                <label>Nome do projeto</label>
+                                <input type="text" class="form-control" name="nome" ng-model="tempProjeto.nome" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Nome do cliente</label>
+                                <input type="text" class="form-control" name="nome_cliente" ng-model="tempProjeto.cliente.nome" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Screenshot (URL da imagem)</label>
+                                <input type="text" class="form-control" name="screenshot" ng-model="tempProjeto.screenshot" required/>
+                            </div>
+                            <div class="form-group">
+                                <label>Descrição do projeto</label>
+                                <textarea class="form-control" name="descricao" ng-model="tempProjeto.descricao" required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label>Status do projeto</label>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="status" id="concluido" value="EM_DESENVOLVIMENTO" ng-model="tempProjeto.status" required>
+                                        Em desenvolvimento
+                                    </label>
+                                </div>
+                                <div class="radio">
+                                    <label>
+                                        <input type="radio" name="status" id="em_desenvolvimento" value="CONCLUIDO" ng-model="tempProjeto.status" required>
+                                        Concluído
+                                    </label>
+                                </div>
+                            </div>
+                            <a href="javascript:void(0);" class="btn btn-warning" onClick="$('.formData').slideUp();">Cancelar</a>
+                            <a href="javascript:void(0);" class="btn btn-success" ng-disabled="projetoForm.$invalid" ng-hide="tempProjeto.id" ng-click="addProjeto()">Novo projeto</a>
+                            <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempProjeto.id" ng-click="alterarProjeto()">Alterar projeto</a>
+                        </form>
+                    </div>
+                    <div class="">
+                        <table class="table table-striped">
+                            <tr>
+                                <th>#</th>
+                                <th>Nome</th>
+                                <th>Cliente</th>
+                                <th>Descricao</th>
+                                <th>Screenshot</th>
+                                <th>Status</th>
+                                <th></th>
+                            </tr>
+                            <tr ng-repeat="projeto in projetos">
+                                <td>{{projeto.id}}</td>
+                                <td>{{projeto.nome}}</td>
+                                <td>{{projeto.cliente.nome}}</td>
+                                <td>{{projeto.descricao}}</td>
+                                <td>{{projeto.screenshot}}</td>
+                                <td>{{projeto.status}}</td>
+                                <td>
+                                    <a href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="alterar(projeto)"></a>
+                                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="excluir(projeto)"></a>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1">
+                <div id="download" class="pull-right"></div>
+            </div>
+        </div>
     </body>
 </html>

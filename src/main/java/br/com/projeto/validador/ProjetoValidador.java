@@ -30,15 +30,6 @@ public class ProjetoValidador implements IValidador<Projeto> {
         List<String> mensagens = new ArrayList<>();
         Set<ConstraintViolation<Projeto>> projetoViolations = validator.validate(entity);
 
-        if (entity.getId() == 0 && entity.getNome() != null) {
-            if (entity.getNome().length() > 1) {
-                ProjetoDAO projetoDAO = new ProjetoDAO();
-                if (projetoDAO.consultarPeloNome(entity.getNome()) != null) {
-                    mensagens.add("Já existe um projeto com o nome " + entity.getNome());
-                }
-            }
-        }
-
         if (!projetoViolations.isEmpty()) {
             for (ConstraintViolation violacao : projetoViolations) {
                 mensagens.add(violacao.getMessage());

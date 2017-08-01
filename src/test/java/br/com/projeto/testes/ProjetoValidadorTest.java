@@ -35,24 +35,6 @@ public class ProjetoValidadorTest extends MainTestes{
     }
     
     @Test
-    public void testaSalvarProjetoComNomeExistente(){
-        cliente.setNome(getStringAleatoria(10));
-        projeto.setCliente(cliente);
-        projeto.setDescricao(getStringAleatoria(50));
-        projeto.setNome(getStringAleatoria(10));
-        projeto.setScreenshot(getStringAleatoria(50));
-        projeto.setStatus(Status.CONCLUIDO);
-        
-        ProjetoDAO projetoDAO = new ProjetoDAO();
-        projetoDAO.salvar(projeto);
-        
-        projeto.setId(0);
-        List<String> validacoes = validadorRegras.validar(projeto);
-        assertEquals(1, validacoes.size());
-        assertTrue(validacoes.contains("Já existe um projeto com o nome "+projeto.getNome()));
-    }
-    
-    @Test
     public void testaCamposNulos(){
         List<String> validacoes = validadorRegras.validar(projeto);
         assertEquals(5, validacoes.size());
