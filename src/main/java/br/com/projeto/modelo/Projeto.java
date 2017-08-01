@@ -6,6 +6,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 /**
  * @author Gustavo de Souza Bezerra <gustavo.bezerra@hotmail.com>
@@ -19,12 +21,18 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
+    @NotNull(message="Nome do projeto não pode ser nulo.")
+    @Size(min = 2, max = 14, message = "Nome do projeto deve ter entre 2 e 20 caracteres.")
     private String nome;
     
+    @NotNull
+    @Size(min = 2, max = 100, message="Descrição do projeto deve ter entre {min} e {max} caracteres.")
     private String descricao;
     
+    @NotNull(message="URL da imagem não pode ser nula.")
     private String screenshot;
     
+    @NotNull(message="Status do projeto não pode ser nulo.")
     @Enumerated(EnumType.STRING)
     private Status status;
 

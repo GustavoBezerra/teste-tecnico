@@ -3,7 +3,6 @@ package br.com.projeto.dao;
 import br.com.projeto.modelo.Projeto;
 import br.com.projeto.util.JPAUtil;
 import java.util.List;
-import static javafx.scene.input.KeyCode.T;
 import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
@@ -12,19 +11,14 @@ import javax.persistence.criteria.CriteriaQuery;
  * @author Gustavo de Souza Bezerra <gustavo.bezerra@hotmail.com>
  * @date   31/07/2017
  */
-public class GenericDAO implements IDAO{
+public class ProjetoDAO extends AbstractDAO<Projeto>{
 
-    private EntityManager entityManager;
-    
-    private void openConnection(){
-        entityManager = new JPAUtil().getEntityManager();
-    }
-    
     @Override
-    public void salvar(Projeto projeto) {
+    public void deletar(int id) {
         openConnection();
         entityManager.getTransaction().begin();
-        entityManager.persist(projeto);
+        Projeto projeto = entityManager.find(Projeto.class, id);
+        entityManager.remove(projeto);
         entityManager.getTransaction().commit();
         entityManager.close();
     }
@@ -40,7 +34,16 @@ public class GenericDAO implements IDAO{
         entityManager.close();
         return resultList;
     }
-    
-    
 
+    @Override
+    public Projeto consultar(int id) {
+        openConnection();
+        entityManager.getTransaction().begin();
+        Projeto projeto = entityManager.find(Projeto.class, id);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return projeto;
+    }
+
+    
 }
