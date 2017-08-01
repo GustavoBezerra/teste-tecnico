@@ -1,12 +1,11 @@
 package br.com.projeto.testes;
 
 import br.com.projeto.dao.ProjetoDAO;
+import br.com.projeto.modelo.Cliente;
 import br.com.projeto.modelo.Projeto;
 import br.com.projeto.modelo.Status;
-import java.util.List;
 import java.util.UUID;
 import org.junit.After;
-import org.junit.AfterClass;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
@@ -31,8 +30,11 @@ public class ProjetoDAOTest {
     @BeforeClass
     public static void criaProjeto() {
         projeto = new Projeto();
+        Cliente cliente = new Cliente();
         projetoDAO = new ProjetoDAO();
         
+        cliente.setNome("Gustavo");
+        projeto.setCliente(cliente);
         projeto.setNome(getStringAleatoria(10));
         projeto.setDescricao(getStringAleatoria(30));
         projeto.setScreenshot(getStringAleatoria(25));
@@ -66,15 +68,18 @@ public class ProjetoDAOTest {
         assertEquals(projeto.getDescricao(), projetoConsultado.getDescricao());
         assertEquals(projeto.getScreenshot(), projetoConsultado.getScreenshot());
         assertEquals(projeto.getStatus(), projetoConsultado.getStatus());
+        assertEquals(projeto.getCliente().getNome(), projetoConsultado.getCliente().getNome());
+        assertEquals(projeto.getCliente().getId(), projetoConsultado.getCliente().getId());
     }
     
    
     public void testaAlteracao(){
         projeto.setNome(getStringAleatoria(10));
-        
+        projeto.getCliente().setNome(getStringAleatoria(10));
         projetoDAO.alterar(projeto);
 
         assertEquals(projetoDAO.consultar(projeto.getId()).getNome(), projeto.getNome());
+        assertEquals(projetoDAO.consultar(projeto.getId()).getCliente().getNome(), projeto.getCliente().getNome());
     }
     
     @After

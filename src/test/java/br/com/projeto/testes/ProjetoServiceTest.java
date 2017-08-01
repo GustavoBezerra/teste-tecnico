@@ -20,9 +20,10 @@ public class ProjetoServiceTest {
         projeto.setDescricao("Desricao");
         projeto.setScreenshot("dasd");
         List<String> validacoes = projetoService.validar(projeto);
-        assertEquals(2, validacoes.size());
+        assertEquals(3, validacoes.size());
         assertTrue(validacoes.contains("Nome do projeto não pode ser nulo."));
         assertTrue(validacoes.contains("Status do projeto não pode ser nulo."));
+        assertTrue(validacoes.contains("O projeto deve ter um cliente."));
     }
 
 }

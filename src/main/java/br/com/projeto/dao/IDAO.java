@@ -1,6 +1,5 @@
 package br.com.projeto.dao;
 
-import br.com.projeto.modelo.Projeto;
 import java.util.List;
 
 /**

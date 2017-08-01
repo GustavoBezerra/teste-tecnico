@@ -1,6 +1,5 @@
 package br.com.projeto.dao;
 
-import br.com.projeto.modelo.Projeto;
 import br.com.projeto.util.JPAUtil;
 import javax.persistence.EntityManager;
 

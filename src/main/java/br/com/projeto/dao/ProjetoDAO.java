@@ -1,9 +1,7 @@
 package br.com.projeto.dao;
 
 import br.com.projeto.modelo.Projeto;
-import br.com.projeto.util.JPAUtil;
 import java.util.List;
-import javax.persistence.EntityManager;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
