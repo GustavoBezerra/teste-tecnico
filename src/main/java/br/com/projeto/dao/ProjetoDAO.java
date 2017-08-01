@@ -2,6 +2,7 @@ package br.com.projeto.dao;
 
 import br.com.projeto.modelo.Projeto;
 import java.util.List;
+import javax.persistence.TypedQuery;
 import javax.persistence.criteria.CriteriaBuilder;
 import javax.persistence.criteria.CriteriaQuery;
 
@@ -38,6 +39,22 @@ public class ProjetoDAO extends AbstractDAO<Projeto>{
         openConnection();
         entityManager.getTransaction().begin();
         Projeto projeto = entityManager.find(Projeto.class, id);
+        entityManager.getTransaction().commit();
+        entityManager.close();
+        return projeto;
+    }
+    
+    public Projeto consultarPeloNome(String nome){
+        openConnection();
+        
+        entityManager.getTransaction().begin();
+        String jpql = "select p from Projeto p where p.nome like :pNome";
+
+        TypedQuery<Projeto> user = entityManager.createQuery(jpql, Projeto.class);
+
+        user.setParameter("pNome", nome);
+
+        Projeto projeto = user.getSingleResult();
         entityManager.getTransaction().commit();
         entityManager.close();
         return projeto;

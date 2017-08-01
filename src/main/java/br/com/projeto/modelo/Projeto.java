@@ -1,6 +1,7 @@
 package br.com.projeto.modelo;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -23,6 +24,7 @@ public class Projeto {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     
+    @Column(unique = true)
     @NotNull(message="Nome do projeto não pode ser nulo.")
     @Size(min = 2, max = 20, message = "Nome do projeto deve ter entre 2 e 20 caracteres.")
     private String nome;
@@ -31,8 +33,8 @@ public class Projeto {
     @OneToOne(cascade = CascadeType.ALL)
     private Cliente cliente;
     
-    @NotNull
-    @Size(min = 2, max = 100, message="Descrição do projeto deve ter entre {min} e {max} caracteres.")
+    @NotNull(message="O projeto deve possuir uma descrição.")
+    @Size(min = 2, max = 100, message="Descrição do projeto deve ter entre 2 e 100 caracteres.")
     private String descricao;
     
     @NotNull(message="URL da imagem não pode ser nula.")

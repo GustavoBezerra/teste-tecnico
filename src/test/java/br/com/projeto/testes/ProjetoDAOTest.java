@@ -16,16 +16,11 @@ import static org.junit.Assert.*;
  * @date 31/07/2017
  * Classe responsável por testar os métodos da classe ProjetoDAO
  */
-public class ProjetoDAOTest {
+public class ProjetoDAOTest extends MainTestes{
     
     private static Projeto projeto;
     private static ProjetoDAO projetoDAO;
     private static int quantidadeProjetos = 0;
-    
-    private static String getStringAleatoria(int tamanho){
-        UUID uuid = UUID.randomUUID();
-        return uuid.toString().substring(0,tamanho);
-    }
 
     @BeforeClass
     public static void criaProjeto() {
