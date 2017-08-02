@@ -14,3 +14,11 @@ a.glyphicon{text-decoration: none;cursor: pointer;}
     margin-top: 10px;
     margin-left: 10px;
 }
+
+.alinhado { min-height: 200px; max-height: 200px;} 
+
+.limitar-texto {
+    white-space: nowrap; 
+    overflow: hidden;
+    text-overflow: ellipsis; 
+}

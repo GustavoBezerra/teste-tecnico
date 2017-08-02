@@ -1,6 +1,6 @@
 angular.module("crudApp", [])
     .controller("projetoController", function ($scope, $http) {
-        $scope.projetos = {};
+        $scope.projetos = {"screenshot": ""};
         $scope.tempProjeto = {};
 
         /**
@@ -10,7 +10,7 @@ angular.module("crudApp", [])
             $http.get('/teste-tecnico/v1/projeto').success(function (response) {
                 var data = "text/json;charset=utf-8," + encodeURIComponent(response.projetos);
                 $('#download').empty();
-                $('<a href="data:' + data + '" download="data.json" class="glyphicon glyphicon-save"> Download</a>').appendTo('#download');
+                $('<a href="data:' + data + '" download="data.json"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Exportar</button></a>').appendTo('#download');
                 $scope.projetos = JSON.parse(response.projetos);
             });
         };
@@ -19,8 +19,7 @@ angular.module("crudApp", [])
          * Método responsável por abrir o formulário e preencher o tempProjeto com o projeto clicado
          */
         $scope.alterar = function (projeto) {
-            $scope.tempProjeto = projeto;
-            $('.formData').slideDown();
+            $scope.tempProjeto = angular.copy(projeto);
         };
 
         /**
@@ -28,7 +27,6 @@ angular.module("crudApp", [])
          */
         $scope.cancelar = function () {
             $scope.tempProjeto = {};
-            $('.formData').slideUp();
         };
 
         /**

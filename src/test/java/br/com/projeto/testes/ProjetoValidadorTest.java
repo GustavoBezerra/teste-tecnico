@@ -81,7 +81,7 @@ public class ProjetoValidadorTest extends MainTestes{
         projeto.setCliente(cliente);
         
         List<String> validacoes = validadorRegras.validar(projeto);
-        assertEquals(0, validacoes.size());        
+        assertEquals(0, validacoes.size());
     }
     
     @Test
