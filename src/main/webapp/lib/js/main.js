@@ -1,7 +1,9 @@
 angular.module("crudApp", [])
     .controller("projetoController", function ($scope, $http) {
-        $scope.projetos = {"screenshot": ""};
-        $scope.tempProjeto = {};
+//        $scope.projetos = {};
+//        $scope.projeto = {};
+//        $scope.search = "";
+//        $scope.tempProjeto = {};
 
         /**
          * Método responsável por recuperar todos os projetos cadastrados e a preparar a exportação
