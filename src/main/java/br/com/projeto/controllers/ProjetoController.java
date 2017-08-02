@@ -6,8 +6,10 @@ import br.com.projeto.validador.ProjetoValidador;
 import com.google.gson.Gson;
 import java.util.List;
 import javax.ws.rs.Consumes;
+import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
+import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
@@ -73,5 +75,34 @@ public class ProjetoController {
             status = Response.Status.BAD_REQUEST;
         }
         return Response.status(status).entity(json.toString()).build();
+    }
+    
+    @PUT
+    @Consumes(MediaType.APPLICATION_JSON)
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response alterarProjeto(String conteudo) {
+        Gson gson = new Gson();
+        Projeto projeto = gson.fromJson(conteudo, Projeto.class);
+        List<String> violacoes = projetoValidador.validar(projeto);
+        Response.Status status;
+        if (violacoes.isEmpty()) {
+            ProjetoDAO projetoDAO = new ProjetoDAO();
+            projetoDAO.alterar(projeto);
+            json.put("projeto", new Gson().toJson(projeto));
+            status = Response.Status.OK;
+        } else{
+            json.put("erros", new Gson().toJson(violacoes));
+            status = Response.Status.BAD_REQUEST;
+        }
+        return Response.status(status).entity(json.toString()).build();
+    }
+    
+    @DELETE
+    @Path("{id}")
+    public Response removeProjeto(@PathParam("id") int id) {
+        ProjetoDAO projetoDAO = new ProjetoDAO();
+
+        projetoDAO.deletar(id);
+        return Response.status(Response.Status.OK).entity(json.toString()).build();
     }
 }

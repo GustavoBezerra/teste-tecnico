@@ -2,7 +2,7 @@
 <html lang="pt-br" ng-app="crudApp"> 
     <head>
         <meta charset="utf-8"/>
-        <title>AngularJS CRUD Operations with PHP and MySQL by CodexWorld</title>
+        <title>Teste técnico - Portifólio</title>
         <link href="lib/css/bootstrap.min.css" rel="stylesheet">
         <link href="lib/css/style.css" rel="stylesheet">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
@@ -15,7 +15,7 @@
             <div class="col-md-10 col-md-offset-1">
                 <h2>Teste técnico - Portifólio</h2>
                 <div class="panel panel-default users-content">
-                    <div class="panel-heading">Meus projetos <a href="javascript:void(0);" class="glyphicon glyphicon-plus" onClick="$('.formData').slideToggle();"></a></div>
+                    <div class="panel-heading">Projetos <a href="javascript:void(0);" class="glyphicon glyphicon-plus" onClick="$('.formData').slideToggle();"></a></div>
                     <div class="alert alert-danger none"><p></p></div>
                     <div class="alert alert-success none"><p></p></div>
                     <div class="panel-body none formData col-md-12">
@@ -51,36 +51,36 @@
                                     </label>
                                 </div>
                             </div>
-                            <a href="javascript:void(0);" class="btn btn-warning" onClick="$('.formData').slideUp();">Cancelar</a>
+                            <a class="btn btn-warning" ng-click="cancelar()">Cancelar</a>
                             <a href="javascript:void(0);" class="btn btn-success" ng-disabled="projetoForm.$invalid" ng-hide="tempProjeto.id" ng-click="addProjeto()">Novo projeto</a>
                             <a href="javascript:void(0);" class="btn btn-success" ng-hide="!tempProjeto.id" ng-click="alterarProjeto()">Alterar projeto</a>
                         </form>
                     </div>
-                    <div class="">
-                        <table class="table table-striped">
-                            <tr>
-                                <th>#</th>
-                                <th>Nome</th>
-                                <th>Cliente</th>
-                                <th>Descricao</th>
-                                <th>Screenshot</th>
-                                <th>Status</th>
-                                <th></th>
-                            </tr>
-                            <tr ng-repeat="projeto in projetos">
-                                <td>{{projeto.id}}</td>
-                                <td>{{projeto.nome}}</td>
-                                <td>{{projeto.cliente.nome}}</td>
-                                <td>{{projeto.descricao}}</td>
-                                <td>{{projeto.screenshot}}</td>
-                                <td>{{projeto.status}}</td>
-                                <td>
-                                    <a href="javascript:void(0);" class="glyphicon glyphicon-edit" ng-click="alterar(projeto)"></a>
-                                    <a href="javascript:void(0);" class="glyphicon glyphicon-trash" ng-click="excluir(projeto)"></a>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                </div>
+                <div class="table-responsive">
+                    <table class="table table-striped">
+                        <tr>
+                            <th>#</th>
+                            <th>Nome</th>
+                            <th>Cliente</th>
+                            <th>Descricao</th>
+                            <th>Screenshot</th>
+                            <th>Status</th>
+                            <th></th>
+                        </tr>
+                        <tr ng-repeat="projeto in projetos">
+                            <td>{{projeto.id}}</td>
+                            <td>{{projeto.nome}}</td>
+                            <td>{{projeto.cliente.nome}}</td>
+                            <td>{{projeto.descricao}}</td>
+                            <td>{{projeto.screenshot}}</td>
+                            <td>{{projeto.status}}</td>
+                            <td>
+                                <a class="glyphicon glyphicon-edit" ng-click="alterar(projeto)"></a>
+                                <a class="glyphicon glyphicon-trash" ng-click="excluir(projeto)"></a>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
