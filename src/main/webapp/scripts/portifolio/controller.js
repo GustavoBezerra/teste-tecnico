@@ -1,4 +1,20 @@
 angular.module("crudApp").controller("portifolioController", function ($scope, portifolioService) {
+    $scope.admin = false;
+    
+    $scope.login = function(){
+        if($scope.login.senha === "admin"){
+            $scope.admin = true;
+            $('#loginModal').modal('hide');
+        }else{
+            alert("Senha incorreta!");
+            $scope.login.senha = "";
+        }
+    };
+    
+    $scope.sair = function(){
+        $scope.login.senha = "";
+        $scope.admin = false;
+    };
     /**
      * Método responsável por recuperar todos os projetos cadastrados e a preparar a exportação
      */

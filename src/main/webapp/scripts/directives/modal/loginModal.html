@@ -1,0 +1,23 @@
+<!-- Modal responsável pelo formulário de cadastro e alteração -->
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">Login</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form" name="loginForm">
+                    <div class="form-group">
+                        <label>Senha para acesso</label>
+                        <input type="password" class="form-control" name="senha" ng-model="login.senha" required/>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" data-dismiss="modal">Cancelar</button>
+                <button type="button" class="btn btn-success" ng-disabled="loginForm.$invalid" ng-click="login()">Entrar</button>
+            </div>
+        </div>
+    </div>
+</div>
