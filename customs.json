@@ -2,6 +2,7 @@
     "elements": {
         "projeto-item": {},
         "projeto-modal": {},
+        "login-modal": {},
         "detalhes-modal": {}
     },
     "attributes": {}

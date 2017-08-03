@@ -15,6 +15,7 @@ import org.junit.BeforeClass;
 /**
  * @author Gustavo de Souza Bezerra <gustavo.bezerra@hotmail.com>
  * @date 31/07/2017
+ * Classe responsável pelo teste das restrições do modelo
  */
 public class ProjetoValidadorTest extends MainTestes {
 
@@ -25,7 +26,6 @@ public class ProjetoValidadorTest extends MainTestes {
     @BeforeClass
     public static void setUp() {
         validadorRegras = new ProjetoValidador();
-        assertEquals(10, getStringAleatoria(10).length());
     }
 
     @Before

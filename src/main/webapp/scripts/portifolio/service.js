@@ -1,3 +1,6 @@
+/**
+ * Serviço responsável pelas operações referentes ao portifólio
+ */
 angular.module("crudApp").factory('portifolioService', function ($http) {
     var endpoint = "/teste-tecnico/v1/projeto/";
     var config = {headers: {

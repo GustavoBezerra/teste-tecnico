@@ -4,7 +4,6 @@ import br.com.projeto.dao.ProjetoDAO;
 import br.com.projeto.modelo.Cliente;
 import br.com.projeto.modelo.Projeto;
 import br.com.projeto.modelo.Status;
-import java.util.UUID;
 import org.junit.After;
 import org.junit.BeforeClass;
 import org.junit.Test;
@@ -28,7 +27,7 @@ public class ProjetoDAOTest extends MainTestes{
         Cliente cliente = new Cliente();
         projetoDAO = new ProjetoDAO();
         
-        cliente.setNome("Gustavo");
+        cliente.setNome(getStringAleatoria(10));
         projeto.setCliente(cliente);
         projeto.setNome(getStringAleatoria(10));
         projeto.setDescricao(getStringAleatoria(30));
@@ -71,17 +70,22 @@ public class ProjetoDAOTest extends MainTestes{
     public void testaAlteracao(){
         projeto.setNome(getStringAleatoria(10));
         projeto.getCliente().setNome(getStringAleatoria(10));
+        projeto.setDescricao(getStringAleatoria(50));
+        projeto.setScreenshot(getStringAleatoria(25));
+        projeto.setStatus(Status.EM_DESENVOLVIMENTO);
         projetoDAO.alterar(projeto);
 
         assertEquals(projetoDAO.consultar(projeto.getId()).getNome(), projeto.getNome());
+        assertEquals(projetoDAO.consultar(projeto.getId()).getDescricao(), projeto.getDescricao());
+        assertEquals(projetoDAO.consultar(projeto.getId()).getStatus(), projeto.getStatus());
+        assertEquals(projetoDAO.consultar(projeto.getId()).getScreenshot(), projeto.getScreenshot());
         assertEquals(projetoDAO.consultar(projeto.getId()).getCliente().getNome(), projeto.getCliente().getNome());
     }
     
     @After
     public void testaRemocao(){
-        quantidadeProjetos = projetoDAO.consultar().size();
         projetoDAO.deletar(projeto.getId());
-        assertEquals(projetoDAO.consultar().size(), quantidadeProjetos-1);
+        assertEquals(projetoDAO.consultar().size(), quantidadeProjetos);
     }
     
     

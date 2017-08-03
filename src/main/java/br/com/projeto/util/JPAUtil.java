@@ -11,7 +11,7 @@ import javax.persistence.Persistence;
 public class JPAUtil {
     
     private static EntityManagerFactory entityManagerFactory = Persistence
-            .createEntityManagerFactory("postgres");
+            .createEntityManagerFactory("aws-mysql");
     
     public EntityManager getEntityManager() {
         return entityManagerFactory.createEntityManager();

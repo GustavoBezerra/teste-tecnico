@@ -22,7 +22,7 @@ import javax.validation.constraints.Size;
 public class Projeto implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @Column(unique = true)

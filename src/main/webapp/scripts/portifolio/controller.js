@@ -1,6 +1,9 @@
 angular.module("crudApp").controller("portifolioController", function ($scope, portifolioService) {
     $scope.admin = false;
     
+    /**
+     * Método responsável pela verificação da senha para login
+     */
     $scope.login = function(){
         if($scope.login.senha === "admin"){
             $scope.admin = true;
@@ -11,6 +14,9 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
         }
     };
     
+    /**
+     * Método responsável por sair do modo admin
+     */
     $scope.sair = function(){
         $scope.login.senha = "";
         $scope.admin = false;

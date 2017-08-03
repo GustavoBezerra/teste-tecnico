@@ -16,7 +16,7 @@ import javax.validation.constraints.Size;
 public class Cliente implements Serializable {
     
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     
     @NotNull(message="O cliente deve possuir um nome.")

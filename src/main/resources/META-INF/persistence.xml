@@ -5,7 +5,6 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 	version="2.0">
 	
 	<persistence-unit name="postgres">
-		<!--<provider>org.hibernate.ejb.HibernatePersistence</provider>-->
 		<class>br.com.projeto.modelo.Projeto</class>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
@@ -14,6 +13,21 @@ http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd"
 			<property name="javax.persistence.jdbc.password" value="123Fatec" />
 
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
+			<property name="hibernate.hbm2ddl.auto" value="update" />
+			<property name="hibernate.show_sql" value="false" />
+			<property name="hibernate.format_sql" value="true" />
+		</properties>
+	</persistence-unit>
+        
+        <persistence-unit name="aws-mysql">
+		<class>br.com.projeto.modelo.Projeto</class>
+		<properties>
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.jdbc.Driver" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://elinduxus.c3unfapwzo6m.sa-east-1.rds.amazonaws.com:3306/testeduxus" />
+			<property name="javax.persistence.jdbc.user" value="gustavo" />
+			<property name="javax.persistence.jdbc.password" value="mypassword" />
+
+			<property name="hibernate.dialect" value="org.hibernate.dialect.MySQL5InnoDBDialect" />
 			<property name="hibernate.hbm2ddl.auto" value="update" />
 			<property name="hibernate.show_sql" value="false" />
 			<property name="hibernate.format_sql" value="true" />
