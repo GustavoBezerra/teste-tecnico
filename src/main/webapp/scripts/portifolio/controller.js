@@ -8,6 +8,8 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
             $('#download').empty();
             $('<a href="data:' + data + '" download="data.json"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Exportar</button></a>').appendTo('#download');
             $scope.projetos = JSON.parse(response.data.projetos);
+            // retira o gif de loading
+            $(".loading").fadeOut("slow");
         }, erros);
     };
 
@@ -61,10 +63,14 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
         }
     };
 
+    /**
+     * Método responsável pela exibição dos erros nas requisições
+     * @param {Array} error Erros que retornaram do back-end
+     */
     function erros(error) {
         var erros = JSON.parse(error.data.erros);
         var mensagem = "";
-        erros.forEach(function(erro){
+        erros.forEach(function (erro) {
             mensagem += erro + "\n";
         });
         alert(mensagem);

@@ -58,9 +58,9 @@ public class ProjetoController {
     }
 
     /**
-     * 
-     * @param conteudo
-     * @return 
+     * Método responsável pela função de cadastro da API
+     * @param conteudo Projeto em formato JSON
+     * @return Projeto cadastrado ou o(s) erro(s) ocorrido(s)
      */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
@@ -82,6 +82,11 @@ public class ProjetoController {
         return Response.status(status).entity(json.toString()).build();
     }
     
+    /**
+     * Método responsável pela função de alteração
+     * @param conteudo Projeto em formato JSON contendo o ID
+     * @return Projeto alterado ou o(s) erro(s) ocorrido(s)
+     */
     @PUT
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)
@@ -102,6 +107,11 @@ public class ProjetoController {
         return Response.status(status).entity(json.toString()).build();
     }
     
+    /**
+     * Método responsável pela função de exclusão
+     * @param id ID do projeto a ser excluído
+     * @return OK
+     */
     @DELETE
     @Path("{id}")
     public Response removeProjeto(@PathParam("id") int id) {

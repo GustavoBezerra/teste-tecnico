@@ -83,7 +83,7 @@ public class ProjetoValidadorTest extends MainTestes {
         List<String> validacoes = validadorRegras.validar(projeto);
         assertEquals(0, validacoes.size());
     }
-    
+
     @Test
     public void testaExcederLimitesMaximos() {
         cliente.setNome(getStringAleatoria(25));

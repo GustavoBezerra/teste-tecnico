@@ -17,6 +17,7 @@
         <script src = "scripts/portifolio/controller.js"></script>
         <script src = "scripts/portifolio/service.js"></script>
     </head>
+    <div class="loading"></div>
     <body ng-controller="portifolioController" ng-init="getProjetos()">
         <div class="container">
             <div class="row">
@@ -32,7 +33,7 @@
                             Novo projeto
                         </button>
                         <br/>
-                        <!-- Input pesquisar -->
+                        <!-- Input para o filtro de pesquisa -->
                         <div class="col-md-4 col-md-offset-4">
                             <input type="text" class="form-control" id="search" ng-model="search" placeholder="Pesquisar...."/>
                         </div>
