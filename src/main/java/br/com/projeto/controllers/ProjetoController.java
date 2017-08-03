@@ -72,7 +72,7 @@ public class ProjetoController {
             status = Response.Status.OK;
         } else{
             json.put("erros", new Gson().toJson(violacoes));
-            status = Response.Status.BAD_REQUEST;
+            status = Response.Status.NOT_ACCEPTABLE;
         }
         return Response.status(status).entity(json.toString()).build();
     }

@@ -4,17 +4,17 @@ angular.module("crudApp").factory('portifolioService', function ($http) {
             'Content-Type': 'application/json;'
         }};
     return ({
-        getProjetos: function (callback) {
-            $http.get(endpoint).success(callback);
+        getProjetos: function (successCallback, errorCallback) {
+            $http.get(endpoint).then(successCallback, errorCallback);
         },
-        addProjeto: function (projeto, callback) {
-            $http.post(endpoint, projeto, config).success(callback);
+        addProjeto: function (projeto, successCallback, errorCallback) {
+            $http.post(endpoint, JSON.stringify(projeto), config).then(successCallback, errorCallback);
         },
-        alterarProjeto: function (projeto, callback) {
-            $http.put(endpoint, projeto, config).success(callback);
+        alterarProjeto: function (projeto, successCallback, errorCallback) {
+            $http.put(endpoint, projeto, config).then(successCallback, errorCallback);
         },
-        excluirProjeto: function(id, callback){
-            $http.delete(endpoint + id).success(callback);
+        excluirProjeto: function(id, successCallback, errorCallback){
+            $http.delete(endpoint + id).then(successCallback, errorCallback);
         }
     });
 });

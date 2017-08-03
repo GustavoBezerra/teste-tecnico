@@ -1,1 +1,1 @@
-angular.module("crudApp", []);
+angular.module("crudApp", ['portifolioDiretivas']);

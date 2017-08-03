@@ -10,6 +10,10 @@
         <script src="lib/js/bootstrap.min.js"></script>
         <script src = "https://ajax.googleapis.com/ajax/libs/angularjs/1.5.7/angular.min.js"></script>
         <script src = "scripts/main.js"></script>
+        <script src = "scripts/diretivas.js"></script>
+        <script src = "scripts/directives/modal/projetoModal.js"></script>
+        <script src = "scripts/directives/modal/detalhesModal.js"></script>
+        <script src = "scripts/directives/projetoItem.js"></script>
         <script src = "scripts/portifolio/controller.js"></script>
         <script src = "scripts/portifolio/service.js"></script>
     </head>
@@ -19,135 +23,31 @@
                 <div class="col-md-10 col-md-offset-1">
                     <div class="row">
                         <h2 class="text-center">Teste técnico - Portifólio <span id="download"></span></h2><br/>
-                        <!-- Button trigger modal -->
-                        <button type="button" class="btn btn-success center-block" data-toggle="modal" data-target="#myModal">
+                        <!-- Botão para acionar o modal de cadastro -->
+                        <button type="button" class="btn btn-success center-block" data-toggle="modal" data-target="#projetoModel">
                             Novo projeto
                         </button>
                         <br/>
+                        <!-- Input pesquisar -->
                         <div class="col-md-4 col-md-offset-4">
                             <input type="text" class="form-control" id="search" ng-model="search" placeholder="Pesquisar...."/>
                         </div>
                     </div>
-
                 </div>
             </div>
-
-            <div class="row ">
-                <div class="col-sm-6 col-md-4 " ng-repeat="projeto in projetosFiltrado = (projetos | filter : search)">
-                    <div class="thumbnail">
-                        <ul class="list-group">
-                            <li class="list-group-item list-group-item-success" ng-if="projeto.status === 'CONCLUIDO'">Concluído</li>
-                            <li class="list-group-item list-group-item-warning" ng-if="projeto.status === 'EM_DESENVOLVIMENTO'">Em desenvolvimento</li>
-                        </ul>
-                        <img class="img-responsive alinhado" ng-src="{{projeto.screenshot}}" alt="...">
-                        <div class="caption">
-                            <h3 class="text-center limitar-texto">{{projeto.nome}} - {{projeto.cliente.nome}}</h3>
-                            <p class="limitar-texto">{{projeto.descricao}}</p>
-                            <p>
-                                <a class="btn btn-info" role="button" ng-click="alterar(projeto)" data-toggle="modal" data-target="#detalhes">Ver detalhes</a> 
-                                <a class="btn btn-warning pull-right" role="button" ng-click="alterar(projeto)" data-toggle="modal" data-target="#myModal">Alterar</a>
-                                <a ng-click="excluir(projeto)" class="btn btn-danger pull-right" role="button">Excluir</a>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                
             <div class="row">
-                <div class="col-md-10 col-md-offset-1">
-
+                <!-- Listagem dos projetos cadastrados -->
+                <div class="col-sm-6 col-md-4 " ng-repeat="projeto in projetosFiltrado = (projetos| filter : search)">
+                    <projeto-item></projeto-item>
                 </div>
             </div>
 
+            <!-- Modal como o formulário para adicionar ou alterar projetos -->
+            <projeto-modal></projeto-modal>
 
-
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" ng-click="cancelar()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel" ng-if="!tempProjeto.id">Novo projeto</h4>
-                            <h4 class="modal-title" id="myModalLabel" ng-if="tempProjeto.id">Alterar projeto</h4>
-                        </div>
-                        <div class="modal-body">
-                            <form class="form" name="projetoForm">
-                                <div class="form-group">
-                                    <label>Nome do projeto</label>
-                                    <input type="text" class="form-control" name="nome" ng-model="tempProjeto.nome" required/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Nome do cliente</label>
-                                    <input type="text" class="form-control" name="nome_cliente" ng-model="tempProjeto.cliente.nome" required/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Screenshot (URL da imagem)</label>
-                                    <input type="text" class="form-control" name="screenshot" ng-model="tempProjeto.screenshot" required/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Descrição do projeto</label>
-                                    <textarea class="form-control" name="descricao" ng-model="tempProjeto.descricao" required></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Status do projeto</label>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="status" id="concluido" value="EM_DESENVOLVIMENTO" ng-model="tempProjeto.status" required>
-                                            Em desenvolvimento
-                                        </label>
-                                    </div>
-                                    <div class="radio">
-                                        <label>
-                                            <input type="radio" name="status" id="em_desenvolvimento" value="CONCLUIDO" ng-model="tempProjeto.status" required>
-                                            Concluído
-                                        </label>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info pull-left" ng-click="cancelar()" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-success" ng-if="!tempProjeto.id" ng-disabled="projetoForm.$invalid" ng-click="addProjeto()" data-dismiss="modal">Novo projeto</button>
-                            <button type="button" class="btn btn-warning" ng-if="tempProjeto.id" ng-disabled="projetoForm.$invalid" ng-click="alterarProjeto()" data-dismiss="modal">Alterar projeto</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <button type="button" class="close" data-dismiss="modal" ng-click="cancelar()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                            <h4 class="modal-title" id="myModalLabel">{{tempProjeto.nome}}</h4>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                    <label>Nome do projeto</label>
-                                    <input type="text" class="form-control" name="nome" ng-model="tempProjeto.nome" readonly/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Nome do cliente</label>
-                                    <input type="text" class="form-control" name="nome_cliente" ng-model="tempProjeto.cliente.nome" readonly/>
-                                </div>
-                                <div class="form-group">
-                                    <label>Screenshot</label>
-                                    <img class="img-responsive alinhado" ng-src="{{tempProjeto.screenshot}}" alt="...">
-                                </div>
-                                <div class="form-group">
-                                    <label>Descrição do projeto</label>
-                                    <textarea class="form-control" name="descricao" ng-model="tempProjeto.descricao" readonly></textarea>
-                                </div>
-                                <div class="form-group">
-                                    <label>Status do projeto</label>
-                                    <input type="text" class="form-control" name="nome" ng-model="tempProjeto.status" readonly/>
-                                </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-info pull-left" ng-click="cancelar()" data-dismiss="modal">Fechar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!-- Modal para visualização de detalhes de um projeto -->
+            <detalhes-modal></detalhes-modal>
 
         </div>
     </body>

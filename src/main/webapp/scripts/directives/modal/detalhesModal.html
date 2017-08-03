@@ -1,0 +1,36 @@
+<!-- Modal referente a visualização de um projeto específico -->
+<div class="modal fade" id="detalhes" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" ng-click="cancelar()" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title" id="myModalLabel">{{tempProjeto.nome}}</h4>
+            </div>
+            <div class="modal-body">
+                <div class="form-group">
+                    <label>Nome do projeto</label>
+                    <input type="text" class="form-control" name="nome" ng-model="tempProjeto.nome" readonly/>
+                </div>
+                <div class="form-group">
+                    <label>Nome do cliente</label>
+                    <input type="text" class="form-control" name="nome_cliente" ng-model="tempProjeto.cliente.nome" readonly/>
+                </div>
+                <div class="form-group">
+                    <label>Screenshot</label>
+                    <img class="img-responsive alinhado" ng-src="{{tempProjeto.screenshot}}" alt="...">
+                </div>
+                <div class="form-group">
+                    <label>Descrição do projeto</label>
+                    <textarea class="form-control" name="descricao" ng-model="tempProjeto.descricao" readonly></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Status do projeto</label>
+                    <input type="text" class="form-control" name="nome" ng-model="tempProjeto.status" readonly/>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-info pull-left" ng-click="cancelar()" data-dismiss="modal">Fechar</button>
+            </div>
+        </div>
+    </div>
+</div>

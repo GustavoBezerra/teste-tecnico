@@ -4,11 +4,11 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
      */
     $scope.getProjetos = function () {
         portifolioService.getProjetos(function (response) {
-            var data = "text/json;charset=utf-8," + encodeURIComponent(response.projetos);
+            var data = "text/json;charset=utf-8," + encodeURIComponent(response.data.projetos);
             $('#download').empty();
             $('<a href="data:' + data + '" download="data.json"><button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-save" aria-hidden="true"></span> Exportar</button></a>').appendTo('#download');
-            $scope.projetos = JSON.parse(response.projetos);
-        });
+            $scope.projetos = JSON.parse(response.data.projetos);
+        }, erros);
     };
 
     /**
@@ -30,14 +30,11 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
      */
     $scope.addProjeto = function () {
         portifolioService.addProjeto($scope.tempProjeto, function (response) {
-            if (response.status !== 'OK') {
-                $scope.getProjetos();
-                alert("Projeto cadastrado com sucesso!");
-                $scope.cancelar();
-            } else {
-                console.log("Erro!\n" + response);
-            }
-        });
+            $scope.getProjetos();
+            alert("Projeto cadastrado com sucesso!");
+            $scope.cancelar();
+            $('#projetoModel').modal('hide');
+        }, erros);
     };
 
     /**
@@ -45,14 +42,11 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
      */
     $scope.alterarProjeto = function () {
         portifolioService.alterarProjeto($scope.tempProjeto, function (response) {
-            if (response.status !== 'OK') {
-                $scope.getProjetos();
-                alert("Projeto alterado com sucesso!");
-                $scope.cancelar();
-            } else {
-                console.log("Erro!\n" + response);
-            }
-        });
+            $scope.getProjetos();
+            alert("Projeto alterado com sucesso!");
+            $scope.cancelar();
+            $('#projetoModel').modal('hide');
+        }, erros);
     };
 
     /**
@@ -63,9 +57,13 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
             portifolioService.excluirProjeto(projeto.id, function (response) {
                 $scope.getProjetos();
                 alert("Projeto excluído com sucesso!");
-            });
+            }, erros);
         }
     };
+
+    function erros(error) {
+        alert(error.data.erros);
+    }
 });
 
 
