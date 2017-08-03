@@ -22,7 +22,11 @@
             <div class="row">
                 <div class="col-md-10 col-md-offset-1">
                     <div class="row">
-                        <h2 class="text-center">Teste técnico - Portifólio <span id="download"></span></h2><br/>
+                        <div class="text-center">
+                            <h2>Teste técnico - Portifólio</h2>
+                            <p>Gustavo Bezerra</p>
+                        </div>
+                        <br/>
                         <!-- Botão para acionar o modal de cadastro -->
                         <button type="button" class="btn btn-success center-block" data-toggle="modal" data-target="#projetoModel">
                             Novo projeto
@@ -35,12 +39,16 @@
                     </div>
                 </div>
             </div>
-                
+
             <div class="row">
                 <!-- Listagem dos projetos cadastrados -->
                 <div class="col-sm-6 col-md-4 " ng-repeat="projeto in projetosFiltrado = (projetos| filter : search)">
                     <projeto-item></projeto-item>
                 </div>
+            </div>
+
+            <div class="row">
+                    <span id="download" class="pull-right"></span>
             </div>
 
             <!-- Modal como o formulário para adicionar ou alterar projetos -->

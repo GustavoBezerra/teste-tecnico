@@ -62,7 +62,12 @@ angular.module("crudApp").controller("portifolioController", function ($scope, p
     };
 
     function erros(error) {
-        alert(error.data.erros);
+        var erros = JSON.parse(error.data.erros);
+        var mensagem = "";
+        erros.forEach(function(erro){
+            mensagem += erro + "\n";
+        });
+        alert(mensagem);
     }
 });
 

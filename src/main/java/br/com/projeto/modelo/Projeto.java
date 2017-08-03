@@ -1,5 +1,6 @@
 package br.com.projeto.modelo;
 
+import java.io.Serializable;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -18,7 +19,7 @@ import javax.validation.constraints.Size;
  * Classe responsável por representar um projeto
  */
 @Entity
-public class Projeto {
+public class Projeto implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -34,7 +35,7 @@ public class Projeto {
     private Cliente cliente;
     
     @NotNull(message="O projeto deve possuir uma descrição.")
-    @Size(min = 2, max = 100, message="Descrição do projeto deve ter entre 2 e 100 caracteres.")
+    @Size(min = 2, max = 500, message="Descrição do projeto deve ter entre 2 e 500 caracteres.")
     private String descricao;
     
     @NotNull(message="URL da imagem não pode ser nula.")

@@ -57,6 +57,11 @@ public class ProjetoController {
         return Response.status(Response.Status.OK).entity(json.toString()).build();
     }
 
+    /**
+     * 
+     * @param conteudo
+     * @return 
+     */
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
     @Produces(MediaType.APPLICATION_JSON)

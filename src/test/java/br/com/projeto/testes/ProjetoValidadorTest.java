@@ -77,19 +77,19 @@ public class ProjetoValidadorTest extends MainTestes {
         cliente.setNome(getStringAleatoria(20));
 
         projeto.setNome(getStringAleatoria(20));
-        projeto.setDescricao(getStringAleatoria(100));
+        projeto.setDescricao(getStringAleatoria(500));
         projeto.setCliente(cliente);
 
         List<String> validacoes = validadorRegras.validar(projeto);
         assertEquals(0, validacoes.size());
     }
-
+    
     @Test
     public void testaExcederLimitesMaximos() {
         cliente.setNome(getStringAleatoria(25));
 
         projeto.setNome(getStringAleatoria(100));
-        projeto.setDescricao(getStringAleatoria(200));
+        projeto.setDescricao(getStringAleatoria(501));
         projeto.setCliente(cliente);
         projeto.setScreenshot(getStringAleatoria(50));
         projeto.setStatus(Status.CONCLUIDO);
@@ -97,7 +97,7 @@ public class ProjetoValidadorTest extends MainTestes {
         List<String> validacoes = validadorRegras.validar(projeto);
         assertEquals(3, validacoes.size());
         assertTrue(validacoes.contains("Nome do projeto deve ter entre 2 e 20 caracteres."));
-        assertTrue(validacoes.contains("Descrição do projeto deve ter entre 2 e 100 caracteres."));
+        assertTrue(validacoes.contains("Descrição do projeto deve ter entre 2 e 500 caracteres."));
         assertTrue(validacoes.contains("Nome do cliente deve ter entre 2 e 20 caracteres."));
     }
 
@@ -129,7 +129,7 @@ public class ProjetoValidadorTest extends MainTestes {
         List<String> validacoes = validadorRegras.validar(projeto);
         assertEquals(3, validacoes.size());
         assertTrue(validacoes.contains("Nome do projeto deve ter entre 2 e 20 caracteres."));
-        assertTrue(validacoes.contains("Descrição do projeto deve ter entre 2 e 100 caracteres."));
+        assertTrue(validacoes.contains("Descrição do projeto deve ter entre 2 e 500 caracteres."));
         assertTrue(validacoes.contains("Nome do cliente deve ter entre 2 e 20 caracteres."));
     }
 
